@@ -18,10 +18,12 @@ while ($row = $resultado->fetch_assoc()) {
    // echo("DNI:".$row['dni'] . " - " ."Nombre". $row['nombre']." - "."".$row);
   
    echo  '<tr><td>'.$row['dni'].'</td><td>'.$row['nombre'].'</td><td>'.$row['email'].'</td><td>'.$row['codMatricula'].'</td>'
-                .'<td><a href="ver_alumno.php?dni='.$row['dni'].'"><img src="/Actividad2-CentroFP/ver.png"></a></td><td><img src="/Actividad2-CentroFP/boton-editar.png"></td><td><img src="/Actividad2-CentroFP/basura.png"></td></tr>';
+                .'<td><a href="ver_alumno.php?dni='.$row['dni'].'"><img src="/Actividad2-CentroFP/ver.png"></a></td>'
+                .'<td><a href="modificar_alumno.php?dni='.$row['dni'].'"><img src="/Actividad2-CentroFP/boton-editar.png"></a></td>'
+                .'<td><a href="eliminar_alumno.php?dni='.$row['dni'].'"><img src="/Actividad2-CentroFP/basura.png"></a></td></tr>';
     
     //printf("%s - %s\n", $row["id"], $row["nombre"]);
-    echo "<br>";
+   // echo "<br>";
     
 }
 

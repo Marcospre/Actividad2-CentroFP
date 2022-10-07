@@ -40,6 +40,7 @@ if(isset($_GET['dni'])){
        echo "<tr><th>Nombre</th><td>".$row['nombre']."</td></tr><tr><th>DNI</th><td>".$row['dni']."</td></tr><tr><th>Email</th><td>".$row['email']."</td></tr><tr><th>Codigo Matricula</th><td>".$row['codMatricula']."</td></tr>";
     }
     echo "</table>";
+    echo"<a href='select_alumnos.php'><button>Volver</button></a>";
     $mysqli->close();
     
     
