@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
 <head>
    
@@ -16,27 +16,41 @@
     </style>
 </head>
 <body>
+<?php  $dni = $_GET['dni'];  ?>
 <div class="wrap">
  <h2>Modificar Alumno</h2>
 	<form>
-	<label for="fnombre">Nombre</label>
-	<input type="text" id="fnombre" name="nombre">
-	<br>
-	<label for="femail">Email</label>
-	<input type="text" id="femail" name="email">
-	<br>
-	<label for="fcmatricula">Codigo Matricula</label>
-	<input type="text" id="fcmatricula" name="cmatricula">
-	<br>
-	<input type="submit" value="Modificar" name="Modificar">
-	<input type="button" class="button_active" value="Volver"  onclick="location.href='select_alumnos.php';" />
-	
+		<table>
+		
+				<tr>
+					<td><label for="">DNI</label></td>
+					<td><input type="text" name="dni" readonly="readonly" value="<?php echo $_GET['dni'] ?>"></td>
+				</tr>
+			
+			<tr>
+            	<td><label for="fnombre">Nombre</label></td>
+            	<td><input type="text" id="fnombre" name="nombre"></td>
+            </tr>
+            <tr>
+            	<td><label for="femail">Email</label></td>
+            	<td><input type="text" id="femail" name="email"></td>
+            </tr>
+            <tr>
+            	<td><label for="fcmatricula">Codigo Matricula</label></td>
+            	<td><input type="text" id="fcmatricula" name="cmatricula"></td>
+            </tr>
+           </table>
+            
+            <input type="submit" value="Modificar" name="Modificar">
+            <input type="button" class="button_active" value="Volver"  onclick="location.href='select_alumnos.php';" />
+            
+		
 	</form>
 <?php
 if(isset($_GET['dni'])){
-    $dni= $_GET['dni'];
+    //$dni= $_GET['dni'];
     
-    $mysqli = new mysqli("localhost", "root", "", "centro_fp");
+   
 
     if (isset($_GET['nombre']) && isset($_GET['email'])&& isset($_GET['cmatricula'])) {
         $nombre= $_GET['nombre'];
@@ -45,18 +59,18 @@ if(isset($_GET['dni'])){
         
         if($nombre != null && $email != null && $cmatricula != null){
            
-        
+            $mysqli = new mysqli("localhost", "root", "", "centro_fp");
             if ($mysqli->connect_errno) {
                 echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
             }
             
             /* Sentencia preparada, etapa 1: preparación */
-            if (!($sentencia = $mysqli->prepare("UPDATE alumno SET nombre=?, email=?,codMatricula=? WHERE dni=".$_GET['dni'].";"))) {
+            if (!($sentencia = $mysqli->prepare("UPDATE alumno SET nombre=?, email=?,codMatricula=? WHERE dni='".$dni."';"))) {
                 echo "Falló la preparación: (" . $mysqli->errno . ") " . $mysqli->error;
             }
             
             /* Sentencia preparada, etapa 2: vinculación y ejecución */
-            if (!$sentencia->bind_param("ssss", $nombre, $email, $cmatricula,$dni)) {
+            if (!$sentencia->bind_param("sss", $nombre, $email, $cmatricula)) {
                 echo "Falló la vinculación de parámetros: (" . $sentencia->errno . ") " . $sentencia->error;
             }
             

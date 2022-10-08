@@ -1,24 +1,46 @@
+<!DOCTYPE html>
 <html>
+<head>
+   
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+        
+        .wrap{
+            display:flex ;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
 <body>
+<div class="wrap">
 <h2>Datos Alumno</h2>
-
-<div class="wrap" style="display:flex ">
 <form>
-	<label for="fnombre">Nombre</label>
-	<input type="text" id="fnombre" name="nombre">
-	<br>
-	<label for="fdni">DNI</label>
-	<input type="text" id="fdni" name="dni">
-	<br>
-	<label for="femail">Email</label>
-	<input type="text" id="femail" name="email">
-	<br>
-	<label for="fcmatricula">Codigo Matricula</label>
-	<input type="text" id="fcmatricula" name="cmatricula">
-	<br>
-	<input type="submit" value="Guardar" name="Guardar">
-	<input type="button" class="button_active" value="Volver"  onclick="location.href='select_alumnos.php';" />
-	
+<table>
+	<tr>
+    	<td><label for="fnombre">Nombre</label></td>
+    	<td><input type="text" id="fnombre" name="nombre"></td>
+    </tr>
+    <tr>
+    	<td><label for="fdni">DNI</label></td>
+    	<td><input type="text" id="fdni" name="dni"></td>
+    </tr>
+    <tr>
+    	<td><label for="femail">Email</label></td>
+    	<td><input type="text" id="femail" name="email"></td>
+    </tr>
+    <tr>
+    	<td><label for="fcmatricula">Codigo Matricula</label></td>
+    	<td><input type="text" id="fcmatricula" name="cmatricula"></td>
+    </tr>
+    <tr>
+    	<td><input type="submit" value="Guardar" name="Guardar"></td>
+    	<td><input type="button" class="button_active" value="Volver"  onclick="location.href='select_alumnos.php';" /></td>
+	</tr>
+</table>	
 </form>
 </div>
 

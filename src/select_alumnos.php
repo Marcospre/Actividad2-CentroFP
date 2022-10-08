@@ -1,6 +1,23 @@
+<!DOCTYPE html>
 <html>
+<head>
+   
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+        
+        .wrap{
+            display:flex ;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
 <body>
-<h2>Alumnos</h2>
+<div class="wrap">
+<h1>Alumnos</h1>
 
 
 <?php
@@ -33,5 +50,6 @@ echo "<a href='añadir_alumno.php'><button>Añadir Alumno</button></a>";
 $mysqli->close();
 
 ?>
+</div>
 </body>
 </html>
