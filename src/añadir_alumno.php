@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: logout_tutor.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +22,19 @@
         }
     </style>
 </head>
+<?php 
+include "Tutor.php";
+$tutores = array();
+$mysqli = new mysqli("localhost", "root", "", "centro_fp");
+$resultado = $mysqli->query("SELECT * FROM tutores");
+
+while($row = $resultado->fetch_assoc()){
+    $tutores[] = new Tutor($row['dni'], $row['Nombre'],$row['contrasenia']);
+   
+}
+
+
+?>
 <body>
 <div class="wrap">
 <h2>Datos Alumno</h2>
@@ -37,6 +57,19 @@
     	<td><input type="text" id="fcmatricula" name="cmatricula"></td>
     </tr>
     <tr>
+    	<td><label for="ftutor">Tutor</label></td>
+    	<td><select name="ftutor" id="ftutor">
+    	
+    		<?php
+    		for($i = 0;$i < count($tutores);$i++){
+    		    $nombre=tutores[i]->getNombre();
+    		    echo '<option value="'.$nombre.'">'.$nombre.'</option>';
+    		    //echo '<option>Hola</option>'; 
+    		}
+    		?>
+      </select></td>
+    </tr>
+    <tr>
     	<td><input type="submit" value="Guardar" name="Guardar"></td>
     	<td><input type="button" class="button_active" value="Volver"  onclick="location.href='select_alumnos.php';" /></td>
 	</tr>
@@ -46,7 +79,11 @@
 
 
 <?php
-
+for($i = 0;$i < count($tutores);$i++){
+    $tutor=tutores[i];
+    //echo '<option value="'.$nombre.'">'.$nombre.'</option>';
+    echo $tutor->geNombre();
+}
     if (isset($_GET['nombre']) && isset($_GET['dni'])&& isset($_GET['email'])&& isset($_GET['cmatricula'])) {
         $nombre= $_GET['nombre'];
         $dni = $_GET['dni'];

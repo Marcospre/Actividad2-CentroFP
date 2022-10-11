@@ -4,6 +4,13 @@ class Alumno {
     private string $name;
     private string $codMatricula;
     private string $email;
+    private string $dniTutor;
+    
+    
+    
+    public function getDNITutor(){
+        return $this->dniTuttor;
+    }
     
     public function getDni()
     {
@@ -48,6 +55,7 @@ class Alumno {
     }
      
    
+    
     function __construct($name, $DNI, $email, $codMatricula){
       $this->name = $name;
       $this->dni = $DNI;

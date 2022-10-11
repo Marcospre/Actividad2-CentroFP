@@ -1,6 +1,33 @@
+<?php
+session_start();
+if(isset($_SESSION['user'])){
+    $nombre_user = $_SESSION['user'];
+}else{
+    header("Location: logout_tutor.php");
+}
+?>
+
+<!DOCTYPE html>
 <html>
+<head>
+   
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+        
+        .wrap{
+            display:flex ;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
 <body>
-<h2>Alumnos</h2>
+<h3>Usuario:<?php echo $nombre_user; ?></h3>
+<div class="wrap">
+<h1>Alumnos</h1>
 
 
 <?php
@@ -28,10 +55,18 @@ while ($row = $resultado->fetch_assoc()) {
 }
 
 echo "</table>";
+?>
+<div class="botones">
+<?php 
 echo "<a href='añadir_alumno.php'><button>Añadir Alumno</button></a>";
+echo "<a href='logout_tutor.php'><button>Logout</button></a>";
+
+
 /* se recomienda el cierre explícito */
 $mysqli->close();
 
 ?>
+</div>
+</div>
 </body>
 </html>
